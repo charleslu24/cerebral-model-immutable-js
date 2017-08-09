@@ -101,9 +101,9 @@ var Model = function (initialState) {
            * @return null
            */
           merge: function (object) {
-            // Grab all the keys in the object as they are all the paths we want to update
+            // pushPath needs an Array to traverse
             Object.keys(object).forEach(function(path) {
-              pushPath(path);
+              pushPath([path]);
             });
             state = state.merge(Immutable.fromJS(object));
           },
