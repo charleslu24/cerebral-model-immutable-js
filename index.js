@@ -95,9 +95,15 @@ var Model = function (initialState) {
               return array.splice.apply(array, args.map(Immutable.fromJS.bind(Immutable)));
             });
           },
-          merge: function (path, value) {
-            pushPath(path);
-            state = state.mergeIn(path, Immutable.fromJS(value));
+          /**
+           * Merges an object into the state tree
+           * @param {Object} - object that contains the keys and values to be merged into the state tree
+           * @return null
+           */
+          merge: function (object) {
+            // Grab all the keys in the object as they are all the paths we want to update
+            Object.keys(object).forEach(path => ( pushPath(path) ));
+            state = state.merge(Immutable.fromJS(object));
           },
           concat: function () {
             var args = [].slice.call(arguments);
