@@ -97,10 +97,11 @@ var Model = function (initialState) {
           },
           /**
            * Merges an object into the state tree
+           * @param {Array} - empty array since merging requires no path
            * @param {Object} - object that contains the keys and values to be merged into the state tree
            * @return null
            */
-          merge: function (object) {
+          merge: function (nullPath, object) {
             // pushPath needs an Array to traverse
             Object.keys(object).forEach(function(path) {
               pushPath([path]);
